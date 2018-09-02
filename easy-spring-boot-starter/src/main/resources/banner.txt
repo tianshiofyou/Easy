@@ -1,0 +1,26 @@
+${AnsiColor.GREEN}
+EEEEEEEEEEEEEEEEEEEEEE
+E::::::::::::::::::::E
+E::::::::::::::::::::E
+EE::::::EEEEEEEEE::::E
+  E:::::E       EEEEEE  aaaaaaaaaaaaa      ssssssssssyyyyyyy           yyyyyyy
+  E:::::E               a::::::::::::a   ss::::::::::sy:::::y         y:::::y
+  E::::::EEEEEEEEEE     aaaaaaaaa:::::ass:::::::::::::sy:::::y       y:::::y
+  E:::::::::::::::E              a::::as::::::ssss:::::sy:::::y     y:::::y
+  E:::::::::::::::E       aaaaaaa:::::a s:::::s  ssssss  y:::::y   y:::::y
+  E::::::EEEEEEEEEE     aa::::::::::::a   s::::::s        y:::::y y:::::y
+  E:::::E              a::::aaaa::::::a      s::::::s      y:::::y:::::y
+  E:::::E       EEEEEEa::::a    a:::::assssss   s:::::s     y:::::::::y
+EE::::::EEEEEEEE:::::Ea::::a    a:::::as:::::ssss::::::s     y:::::::y
+E::::::::::::::::::::Ea:::::aaaa::::::as::::::::::::::s       y:::::y
+E::::::::::::::::::::E a::::::::::aa:::as:::::::::::ss       y:::::y
+EEEEEEEEEEEEEEEEEEEEEE  aaaaaaaaaa  aaaa sssssssssss        y:::::y
+                                                           y:::::y
+                                                          y:::::y
+                                                         y:::::y
+                                                        y:::::y
+                                                       yyyyyyy
+${AnsiColor.BRIGHT_RED}
+Easy Version: @easy.version@
+Spring Boot Version: ${spring-boot.version} ${spring-boot.formatted-version}
+
