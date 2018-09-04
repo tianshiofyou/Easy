@@ -1,10 +1,12 @@
 package easy.context;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,6 +26,10 @@ public class EasyContext {
 
     private String language;
 
+    private String[] constants;
+
+    private Platform platform = new Platform();
+
     private Map<String,Object> setting = new ConcurrentHashMap<>();
 
     public Object get(String key){
@@ -33,5 +39,19 @@ public class EasyContext {
     public Object set(String key, Object value){
         return setting.putIfAbsent(key,value);
     }
-
+/*
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"profile\":\"")
+                .append(profile).append('\"');
+        sb.append(",\"language\":\"")
+                .append(language).append('\"');
+        sb.append(",\"constants\":")
+                .append(Arrays.toString(constants));
+        sb.append(",\"setting\":")
+                .append(setting);
+        sb.append('}');
+        return sb.toString();
+    }*/
 }
