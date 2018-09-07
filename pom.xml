@@ -18,6 +18,8 @@
     <modules>
         <module>easy-spring-boot-starter</module>
         <module>easy-base</module>
+        <module>easy-common</module>
+        <module>easy-core</module>
     </modules>
 
     <parent>

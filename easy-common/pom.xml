@@ -9,6 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>easy-base</artifactId>
+    <artifactId>easy-common</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.easy</groupId>
+            <artifactId>easy-base</artifactId>
+            <version>${easy.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
