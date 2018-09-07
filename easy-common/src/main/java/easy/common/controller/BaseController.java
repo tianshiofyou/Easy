@@ -1,9 +1,12 @@
 package easy.common.controller;
 
 import com.alibaba.fastjson.JSON;
+import easy.context.EasyContext;
+import easy.context.Platform;
 import easy.utils.EasyException;
 import easy.utils.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +22,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 @Slf4j
 public class BaseController {
+
+    @Autowired
+    EasyContext easyContext;
+
+    @Autowired
+    Platform platform;
 
     /**
      * 捕获处理异常：RestServiceException
