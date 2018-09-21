@@ -24,8 +24,10 @@
         ${LOG_PATH:-./logs}/easy-%d{yyyy-MM-dd, aux}/%d{HH}.log
       </fileNamePattern>
       <maxHistory>720</maxHistory>
-      <maxFileSize>1MB</maxFileSize>
     </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>1MB</maxFileSize>
+    </triggeringPolicy>
   </appender>
 
   <root level="INFO">

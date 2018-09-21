@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easy.user.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password_continue_fails" jdbcType="INTEGER" property="passwordContinueFails" />
+    <result column="is_password_locked" jdbcType="BIT" property="isPasswordLocked" />
+    <result column="password_locked_time" jdbcType="TIMESTAMP" property="passwordLockedTime" />
+    <result column="is_allow_login" jdbcType="BIT" property="isAllowLogin" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="is_email_verified" jdbcType="BIT" property="isEmailVerified" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account, mobile, password, password_continue_fails, is_password_locked, password_locked_time, 
+    is_allow_login, last_login_time, photo, email, is_email_verified
+  </sql>
+  <select id="selectByExample" parameterType="com.easy.user.entity.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from e_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.easy.user.entity.UserExample">
+    delete from e_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (account, mobile, password, 
+      password_continue_fails, is_password_locked, password_locked_time, 
+      is_allow_login, last_login_time, photo, 
+      email, is_email_verified)
+    values (#{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, #{passwordLockedTime,jdbcType=TIMESTAMP}, 
+      #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.easy.user.entity.UserExample" resultType="java.lang.Long">
+    select count(*) from e_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update e_user
+    <set>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwordContinueFails != null">
+        password_continue_fails = #{record.passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPasswordLocked != null">
+        is_password_locked = #{record.isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="record.passwordLockedTime != null">
+        password_locked_time = #{record.passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isAllowLogin != null">
+        is_allow_login = #{record.isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="record.lastLoginTime != null">
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.photo != null">
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEmailVerified != null">
+        is_email_verified = #{record.isEmailVerified,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update e_user
+    set account = #{record.account,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      password_continue_fails = #{record.passwordContinueFails,jdbcType=INTEGER},
+      is_password_locked = #{record.isPasswordLocked,jdbcType=BIT},
+      password_locked_time = #{record.passwordLockedTime,jdbcType=TIMESTAMP},
+      is_allow_login = #{record.isAllowLogin,jdbcType=BIT},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      is_email_verified = #{record.isEmailVerified,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password_continue_fails" jdbcType="INTEGER" property="passwordContinueFails" />
+    <result column="is_password_locked" jdbcType="BIT" property="isPasswordLocked" />
+    <result column="password_locked_time" jdbcType="TIMESTAMP" property="passwordLockedTime" />
+    <result column="is_allow_login" jdbcType="BIT" property="isAllowLogin" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="is_email_verified" jdbcType="BIT" property="isEmailVerified" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account, mobile, password, password_continue_fails, is_password_locked, password_locked_time, 
+    is_allow_login, last_login_time, photo, email, is_email_verified
+  </sql>
+  <select id="selectByExample" parameterType="com.easy.user.entity.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from e_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.easy.user.entity.UserExample">
+    delete from e_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (account, mobile, password, 
+      password_continue_fails, is_password_locked, password_locked_time, 
+      is_allow_login, last_login_time, photo, 
+      email, is_email_verified)
+    values (#{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, #{passwordLockedTime,jdbcType=TIMESTAMP}, 
+      #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.easy.user.entity.UserExample" resultType="java.lang.Integer">
+    select count(*) from e_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update e_user
+    <set>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwordContinueFails != null">
+        password_continue_fails = #{record.passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPasswordLocked != null">
+        is_password_locked = #{record.isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="record.passwordLockedTime != null">
+        password_locked_time = #{record.passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isAllowLogin != null">
+        is_allow_login = #{record.isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="record.lastLoginTime != null">
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.photo != null">
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEmailVerified != null">
+        is_email_verified = #{record.isEmailVerified,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update e_user
+    set account = #{record.account,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      password_continue_fails = #{record.passwordContinueFails,jdbcType=INTEGER},
+      is_password_locked = #{record.isPasswordLocked,jdbcType=BIT},
+      password_locked_time = #{record.passwordLockedTime,jdbcType=TIMESTAMP},
+      is_allow_login = #{record.isAllowLogin,jdbcType=BIT},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      is_email_verified = #{record.isEmailVerified,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password_continue_fails" jdbcType="INTEGER" property="passwordContinueFails" />
+    <result column="is_password_locked" jdbcType="BIT" property="isPasswordLocked" />
+    <result column="password_locked_time" jdbcType="TIMESTAMP" property="passwordLockedTime" />
+    <result column="is_allow_login" jdbcType="BIT" property="isAllowLogin" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="is_email_verified" jdbcType="BIT" property="isEmailVerified" />
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (account, mobile, password, 
+      password_continue_fails, is_password_locked, password_locked_time, 
+      is_allow_login, last_login_time, photo, 
+      email, is_email_verified)
+    values (#{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, #{passwordLockedTime,jdbcType=TIMESTAMP}, 
+      #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (account, mobile, password, 
+      password_continue_fails, is_password_locked, password_locked_time, 
+      is_allow_login, last_login_time, photo, 
+      email, is_email_verified)
+    values (#{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, #{passwordLockedTime,jdbcType=TIMESTAMP}, 
+      #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (account, mobile, password, 
+      password_continue_fails, is_password_locked, password_locked_time, 
+      is_allow_login, last_login_time, photo, 
+      email, is_email_verified)
+    values (#{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, #{passwordLockedTime,jdbcType=TIMESTAMP}, 
+      #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" keyProperty="id" parameterType="com.easy.user.entity.User" useGeneratedKeys="true">
+    insert into e_user (account, mobile, password, 
+      password_continue_fails, is_password_locked, password_locked_time, 
+      is_allow_login, last_login_time, photo, 
+      email, is_email_verified)
+    values (#{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, #{passwordLockedTime,jdbcType=TIMESTAMP}, 
+      #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" parameterType="com.easy.user.entity.User" useGeneratedKeys="true">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (id, account, mobile, 
+      password, password_continue_fails, is_password_locked, 
+      password_locked_time, is_allow_login, last_login_time, 
+      photo, email, is_email_verified
+      )
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, 
+      #{passwordLockedTime,jdbcType=TIMESTAMP}, #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{photo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (id, account, mobile, 
+      password, password_continue_fails, is_password_locked, 
+      password_locked_time, is_allow_login, last_login_time, 
+      photo, email, is_email_verified
+      )
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, 
+      #{passwordLockedTime,jdbcType=TIMESTAMP}, #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{photo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (id, account, mobile, 
+      password, password_continue_fails, is_password_locked, 
+      password_locked_time, is_allow_login, last_login_time, 
+      photo, email, is_email_verified
+      )
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, 
+      #{passwordLockedTime,jdbcType=TIMESTAMP}, #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{photo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (id, account, mobile, 
+      password, password_continue_fails, is_password_locked, 
+      password_locked_time, is_allow_login, last_login_time, 
+      photo, email, is_email_verified
+      )
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, 
+      #{passwordLockedTime,jdbcType=TIMESTAMP}, #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{photo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.easy.user.entity.User">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password_continue_fails" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_password_locked" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="password_locked_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="is_allow_login" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="photo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_email_verified" javaType="java.lang.Boolean" jdbcType="BIT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.easy.user.entity.User">
+    insert into e_user (id, account, mobile, 
+      password, password_continue_fails, is_password_locked, 
+      password_locked_time, is_allow_login, last_login_time, 
+      photo, email, is_email_verified
+      )
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwordContinueFails,jdbcType=INTEGER}, #{isPasswordLocked,jdbcType=BIT}, 
+      #{passwordLockedTime,jdbcType=TIMESTAMP}, #{isAllowLogin,jdbcType=BIT}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{photo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isEmailVerified,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.user.entity.User">
+    insert into e_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordContinueFails != null">
+        password_continue_fails,
+      </if>
+      <if test="isPasswordLocked != null">
+        is_password_locked,
+      </if>
+      <if test="passwordLockedTime != null">
+        password_locked_time,
+      </if>
+      <if test="isAllowLogin != null">
+        is_allow_login,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isEmailVerified != null">
+        is_email_verified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordContinueFails != null">
+        #{passwordContinueFails,jdbcType=INTEGER},
+      </if>
+      <if test="isPasswordLocked != null">
+        #{isPasswordLocked,jdbcType=BIT},
+      </if>
+      <if test="passwordLockedTime != null">
+        #{passwordLockedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAllowLogin != null">
+        #{isAllowLogin,jdbcType=BIT},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerified != null">
+        #{isEmailVerified,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
