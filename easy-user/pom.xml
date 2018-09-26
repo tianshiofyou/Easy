@@ -21,6 +21,10 @@
             <groupId>com.easy</groupId>
             <artifactId>easy-base</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.easy</groupId>
+            <artifactId>easy-common</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>

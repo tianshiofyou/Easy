@@ -28,7 +28,6 @@ public class EasyContext {
 
     private String[] constants;
 
-    @Autowired
     private Platform platform;
 
     private Map<String,Object> setting = new ConcurrentHashMap<>();

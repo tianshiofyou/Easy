@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.75.164.228:3306/easy?profileSQL=true
+    username: root
+    password: P@$$word
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: config,stat,wall,log4j
+
+mybatis:
+  mapper-locations: classpath:mapper/user/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.easy.user.entity  # 注意：对应实体类的路径

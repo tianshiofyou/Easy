@@ -1,7 +1,10 @@
-package com.easy.boot;
+package com.easy;
 
+import com.easy.context.EasyContext;
+import com.easy.context.Platform;
 import com.easy.event.listener.EasyStartListener;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ResourceLoader;
 
 /**

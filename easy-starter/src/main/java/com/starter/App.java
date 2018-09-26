@@ -1,6 +1,6 @@
 package com.starter;
 
-import com.easy.boot.EasyApplication;
+import com.easy.EasyApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**

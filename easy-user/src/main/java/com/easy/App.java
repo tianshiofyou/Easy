@@ -1,6 +1,7 @@
-package com.easy.user;
+package com.easy;
 
-import org.springframework.boot.SpringApplication;
+import com.easy.EasyApplication;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -10,9 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: 1.0
  */
 @SpringBootApplication
+@MapperScan("com.easy.user.mapper")
 public class App {
     public static void main(String[] args) {
-        SpringApplication easy = new SpringApplication(App.class);
+        EasyApplication easy = new EasyApplication(App.class);
         easy.run(args);
     }
 }

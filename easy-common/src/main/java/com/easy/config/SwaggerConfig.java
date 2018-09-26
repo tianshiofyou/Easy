@@ -1,6 +1,6 @@
 package com.easy.config;
-
 import com.easy.context.Platform;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -22,6 +22,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    @Autowired
+    private Platform platform;
+
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -32,14 +35,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    @Bean
-    public Platform getPlatform(){
-        return new Platform();
-    }
-
     private ApiInfo apiInfo() {
-
-        Platform platform = getPlatform();
 
         System.out.println("platform:");
         System.out.println(platform);
@@ -54,3 +50,4 @@ public class SwaggerConfig {
     }
 
 }
+

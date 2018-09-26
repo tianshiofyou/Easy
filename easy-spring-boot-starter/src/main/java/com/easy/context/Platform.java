@@ -3,6 +3,7 @@ package com.easy.context;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description: Description
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.PropertySource;
 @Data
 @ConfigurationProperties(prefix="easy.platform")
 @PropertySource("easy.properties")
+@Component
 public class Platform {
 
     private String name;
