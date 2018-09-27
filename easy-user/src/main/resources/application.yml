@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.75.164.228:3306/easy?profileSQL=true
+    url: jdbc:mysql://47.75.164.228:3306/easy?useSSL=false
     username: root
     password: P@$$word
     druid:
@@ -17,8 +17,17 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
-      filters: config,stat,wall,log4j
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://47.75.164.228:3306/easy?useSSL=false
+      username: root
+      password: P@$$word
+
 
 mybatis:
   mapper-locations: classpath:mapper/user/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
-  type-aliases-package: com.easy.user.entity  # 注意：对应实体类的路径
+  type-aliases-package: com.easy.user.entity
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.easy.user.mapper: debug # 注意：对应实体类的路径

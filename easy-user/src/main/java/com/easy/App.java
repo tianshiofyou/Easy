@@ -1,6 +1,5 @@
 package com.easy;
 
-import com.easy.EasyApplication;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -3,6 +3,7 @@ package com.easy.base.ctrl;
 import com.alibaba.fastjson.JSON;
 import com.easy.context.EasyContext;
 import com.easy.context.Platform;
+import com.easy.utils.BizRsp;
 import com.easy.utils.EasyException;
 import com.easy.utils.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -35,10 +36,9 @@ public class BaseController {
     @ResponseBody
     @ExceptionHandler(value = EasyException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected Result restExceptionHandler(EasyException ex){
+    protected BizRsp restExceptionHandler(EasyException ex){
         log.warn("exception", ex);
-        Result result = Result.EXCPTION;
-        result.setData(ex);
+        BizRsp result = BizRsp.EXCPTION(ex);
         log.warn("response:{}", JSON.toJSONString(result));
         return result;
     }

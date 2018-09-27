@@ -8,6 +8,7 @@ package com.easy.enums;
  */
 public enum ResultCode {
 
+    UNKNOWN(-9,"未知状态"),
     SYS_ERR(-2,"系统异常"),
     SYS_EXP(-1,"服务异常"),
     SUCCESS(0,"请求成功"),
@@ -29,6 +30,15 @@ public enum ResultCode {
 
     public String getValue(){
         return value;
+    }
+
+    public static String getValueByCode(int code){
+        for (ResultCode resultCode : ResultCode.values()) {
+            if (resultCode.code == code) {
+                return resultCode.getValue();
+            }
+        }
+        return UNKNOWN.getValue();
     }
 
 }

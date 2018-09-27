@@ -3,7 +3,11 @@ package com.easy.user.controller;
 
 import com.easy.user.entity.EUser;
 import com.easy.user.service.IEUserService;
+import com.easy.utils.BizRsp;
+import com.easy.utils.Result;
 import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -23,15 +27,22 @@ import java.util.Objects;
 @RequestMapping("/user/eUser")
 public class EUserController extends BaseController {
 
+    @Autowired
     private IEUserService userService;
 
     @RequestMapping("/{id}")
-    public EUser getUser(Long id){
+    public BizRsp getUser(@PathVariable Long id){
         if (Objects.isNull(id)) {
             return null;
         } else {
-            return userService.getById(1);
+            EUser user = userService.getById(id);
+
+            return BizRsp.SUCCESS(user);
         }
+    }
+
+    public String welcome(){
+        return "welcome";
     }
 
 }
