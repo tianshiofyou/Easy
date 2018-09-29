@@ -37,6 +37,7 @@
         <module>easy-starter</module>
         <module>easy-plugins</module>
         <module>easy-code-generator</module>
+        <module>easy-netty</module>
     </modules>
 
     <parent>
@@ -124,6 +125,11 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.0.0.Final</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
