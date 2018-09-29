@@ -12,6 +12,9 @@
     <artifactId>easy-base</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <properties>
+        <common.lang.version>2.6</common.lang.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -21,6 +24,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${common.lang.version}</version>
         </dependency>
     </dependencies>
 </project>

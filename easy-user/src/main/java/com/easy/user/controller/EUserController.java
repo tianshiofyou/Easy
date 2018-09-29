@@ -1,8 +1,10 @@
 package com.easy.user.controller;
 
 
+import com.easy.enums.ErrorCode;
 import com.easy.user.entity.EUser;
 import com.easy.user.service.IEUserService;
+import com.easy.utils.BizException;
 import com.easy.utils.BizRsp;
 import com.easy.utils.Result;
 import org.apache.catalina.User;
@@ -31,12 +33,11 @@ public class EUserController extends BaseController {
     private IEUserService userService;
 
     @RequestMapping("/{id}")
-    public BizRsp getUser(@PathVariable Long id){
+    public BizRsp getUser(@PathVariable Long id) throws BizException {
         if (Objects.isNull(id)) {
-            return null;
+            throw new  BizException(ErrorCode.SYSTEM_ERROR);
         } else {
             EUser user = userService.getById(id);
-
             return BizRsp.SUCCESS(user);
         }
     }
