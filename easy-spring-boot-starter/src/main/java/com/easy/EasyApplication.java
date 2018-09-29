@@ -25,10 +25,7 @@ public class EasyApplication extends SpringApplication {
     }*/
 
     public EasyApplication(ResourceLoader resourceLoader, Class<?>[] primarySources) {
-        super(resourceLoader, primarySources);
-    }
-
-    {
+//        super(resourceLoader, primarySources);
         this.addListeners(new EasyStartListener());
         //启动netty服务端
         this.addListeners(new NettyServer());
