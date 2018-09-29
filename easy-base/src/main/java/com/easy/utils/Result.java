@@ -27,6 +27,10 @@ public class Result {
         return Result.builder().code(code).msg(msg).data(obj).build();
     }
 
+    public static Result ERROR(int code,String msg){
+        return Result.builder().code(code).msg(msg).build();
+    }
+
     public final static Result EXCPTION = new Result();
 
     private Result() {
