@@ -67,7 +67,7 @@ public class MD5 {
     }
 
     public static void main(String[] args) {
-        BigDecimal bigDecimal = new BigDecimal("");
+        BigDecimal bigDecimal = new BigDecimal("22");
         BigDecimal newBig = bigDecimal.setScale(2,BigDecimal.ROUND_HALF_UP);
         System.out.println(newBig);
     }
