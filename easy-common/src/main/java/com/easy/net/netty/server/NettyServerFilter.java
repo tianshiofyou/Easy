@@ -1,4 +1,4 @@
-package com.easy.netty.server;
+package com.easy.net.netty.server;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

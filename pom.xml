@@ -34,10 +34,8 @@
         <module>easy-common</module>
         <module>easy-core</module>
         <module>easy-user</module>
-        <module>easy-starter</module>
         <module>easy-plugins</module>
         <module>easy-code-generator</module>
-        <module>easy-netty</module>
     </modules>
 
     <parent>

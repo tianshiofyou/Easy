@@ -20,7 +20,7 @@ EEEEEEEEEEEEEEEEEEEEEE  aaaaaaaaaa  aaaa sssssssssss        y:::::y
                                                          y:::::y
                                                         y:::::y
                                                        yyyyyyy
-${AnsiColor.BRIGHT_RED}
+${AnsiColor.CYAN}
 Easy Version: @easy.version@
 Spring Boot Version: ${spring-boot.version} ${spring-boot.formatted-version}
 
