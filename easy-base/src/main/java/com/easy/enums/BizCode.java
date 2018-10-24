@@ -14,6 +14,7 @@ public enum BizCode {
     SUCCESS("0000","请求成功"),
     BIZ_SYS_EXP("x000","系统状态异常"),
     PARAM_EXP("0001", "参数异常"),
+    FAIL("1001", "业务异常"),
     ;
 
     private String code;

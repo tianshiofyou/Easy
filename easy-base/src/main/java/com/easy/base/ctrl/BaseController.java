@@ -38,7 +38,7 @@ public class BaseController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected BizRsp restExceptionHandler(EasyException ex){
         log.warn("exception", ex);
-        BizRsp result = BizRsp.EXCPTION(ex);
+        BizRsp result = BizRsp.exception(ex);
         log.warn("response:{}", JSON.toJSONString(result));
         return result;
     }

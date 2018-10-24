@@ -13,6 +13,7 @@ public enum ResultCode {
     SYS_EXP(-1,"服务异常"),
     SUCCESS(0,"请求成功"),
     PARAM_EXP(1, "参数异常"),
+    fail(2, "请求失败"),
     ;
 
     private int code;

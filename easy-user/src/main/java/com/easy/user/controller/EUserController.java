@@ -38,7 +38,7 @@ public class EUserController extends BaseController {
             throw new  BizException(ErrorCode.SYSTEM_ERROR);
         } else {
             EUser user = userService.getById(id);
-            return BizRsp.SUCCESS(user);
+            return BizRsp.success(user);
         }
     }
 

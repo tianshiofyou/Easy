@@ -39,6 +39,7 @@ public class NettyClient {
         return this;
     }
 
+
     public String getHost(){
         if (StringUtils.isEmpty(this.host)) {
             this.host = DEFAULT_HOST;

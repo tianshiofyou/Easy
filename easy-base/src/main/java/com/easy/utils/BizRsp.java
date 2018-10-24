@@ -14,12 +14,17 @@ import lombok.Data;
 @Builder
 public class BizRsp {
 
-    public static BizRsp SUCCESS(Object obj){
+    public static BizRsp success(Object obj){
         BizCode success = BizCode.SUCCESS;
         return BizRsp.builder().bizCode(success.getCode()).bizMsg(success.getValue()).data(obj).build();
     }
 
-    public static BizRsp EXCPTION(Throwable obj){
+    public static BizRsp exception(Throwable obj){
+        BizCode exp = BizCode.BIZ_SYS_EXP;
+        return BizRsp.builder().bizCode(exp.getCode()).bizMsg(exp.getValue()).data(obj).build();
+    }
+
+    public static BizRsp fail(Throwable obj){
         BizCode exp = BizCode.BIZ_SYS_EXP;
         return BizRsp.builder().bizCode(exp.getCode()).bizMsg(exp.getValue()).data(obj).build();
     }

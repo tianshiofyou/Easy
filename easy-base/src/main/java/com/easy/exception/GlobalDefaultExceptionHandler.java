@@ -11,6 +11,6 @@ public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(value = BizException.class)
     @ResponseBody
     public Result resolveBizException(BizException e){
-        return Result.ERROR(e.getErrCode(),e.getErrMsg());
+        return Result.error(e.getErrCode(),e.getErrMsg());
     }
 }

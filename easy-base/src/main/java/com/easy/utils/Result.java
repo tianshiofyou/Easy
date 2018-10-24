@@ -14,7 +14,7 @@ import lombok.Data;
 @Builder
 public class Result {
 
-    public static Result SUCCESS(BizRsp obj){
+    public static Result success(BizRsp obj){
         ResultCode success = ResultCode.SUCCESS;
         return Result.builder().code(success.getCode()).msg(success.getValue()).data(obj).build();
     }
@@ -27,8 +27,12 @@ public class Result {
         return Result.builder().code(code).msg(msg).data(obj).build();
     }
 
-    public static Result ERROR(int code,String msg){
+    public static Result error(int code,String msg){
         return Result.builder().code(code).msg(msg).build();
+    }
+
+    public static Result fail(String msg){
+        return Result.builder().code(ResultCode.fail.getCode()).msg(msg).build();
     }
 
     public final static Result EXCPTION = new Result();
